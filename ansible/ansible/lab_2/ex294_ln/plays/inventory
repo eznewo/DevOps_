@@ -1,0 +1,9 @@
+[proxy]
+mh1
+
+[webservers]
+mh2
+mh3
+
+[database]
+mh4
