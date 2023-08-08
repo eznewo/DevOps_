@@ -1,0 +1,38 @@
+---
+- hosts: localhost
+  become: true
+  tasks:
+          - name: Create /conf_bk on controle node
+            file:
+                    path: /backup
+                    state: directory
+                    owner: elu
+                    group: elu
+                    mode: 0755
+
+- hosts: all
+  become: true
+  tasks:
+          - name: Create directory for archive /backup
+            file:
+                    path: /backup
+                    state: directory
+                    owner: elu
+                    group: elu
+                    mode: 0755
+
+          - name: Creating an archive 
+            archive:
+                    path: /etc
+                    dest: /backup/bk_conf.gz
+                    format: gz
+                    mode: 0660
+
+          - name: Retrieve archive and store on control node
+            fetch:
+                    src: /backup/bk_conf.gz
+                    dest: /backup/{{ inventory_hostname }}-conf_bk.gz
+                    state: touch
+                    owner: elu
+                    group: elu
+                    mode: 0660 

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Copy ssh key of the root user:
+
+for node in 1 2 3 4;
+  do ssh-copy-id mh$node;
+done
+
+
+# Creating elu user on remote nodes:
+ansible all -m user -a "name=elu password={{ 'nahom' | password_hash('sha512') }} "
+# Creating .ssh directory on control node for the 
+
+
+# Copy authorized key:
+
+ansible all -m authorized_key -a "user=elu state=present key='{{ lookup('file', '/home.elu/.ssh/id_rsa.pub') }}' path=/etc/ssh/authorized_key/elu"
+
+# Adding user to sudoers group
+
+ansible all -m copy -a "content='elu ALL=(ALL) NOPASSWD:ALL' dest='/etc/sudoers.d/elu' "
