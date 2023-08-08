@@ -1,2 +1,1 @@
-# DevOps_
-DevOps learning 
+# DevOps learning 
