@@ -5,7 +5,7 @@
 
 # using regular shell command:
 
-for node in 1 2 3 4;
-do touch root@mh$node:/etc/sudoers.d/elu;
-  do "echo 'elu ALL=(ALL) NOPASSWD:ALL" > root@mh$node:/etc/sudoers.d/elu;
-done
+#for node in 1 2 3 4;
+#do touch root@mh$node:/etc/sudoers.d/elu;
+#  do "echo 'elu ALL=(ALL) NOPASSWD:ALL" > root@mh$node:/etc/sudoers.d/elu;
+#done

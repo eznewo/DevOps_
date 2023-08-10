@@ -1,0 +1,19 @@
+---
+- hosts: all
+  become: true
+  tasks:
+          - name: Create a file for the corn job
+            file:
+                    path: /var/log/devices.log
+                    state: touch
+                    mode: 
+          - name: Schedule period cron job
+            cron:
+                    name: yum autoupdate
+                    weekday: "2 3 4 5 6"
+                    minute: "0"
+                    hour: "*"
+                    user: root
+                    job: "vmstat >> /var/log/vmstat.log"
+            when: ansible_hostname in groups['proxy']
+

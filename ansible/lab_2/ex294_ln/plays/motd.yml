@@ -1,0 +1,20 @@
+---
+- hosts: all
+  become: true
+  tasks:
+          - name: Configuring MOTD for proxy
+            copy:
+                    content: "Welcome to HAProxy Server"
+                    dest: /etc/motd
+            when: inventory_hostname in groups['proxy']
+          - name: Configuring MOTD for database servers
+            copy:
+                    content: "Welcome to MySQL Database"
+                    dest: /etc/motd
+            when: inventory_hostname in groups['database']
+
+          - name: Configuring MOTD for webservers
+            copy:
+                    content: "Welcome to Apache Servers"
+                    dest: /etc/motd
+            when: inventory_hostname in groups['webservers']

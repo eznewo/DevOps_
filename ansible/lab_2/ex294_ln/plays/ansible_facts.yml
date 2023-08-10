@@ -1,0 +1,7 @@
+---
+- hosts: proxy
+  tasks:
+          - name: Gather facts and application
+            debug:
+                    msg: 
+

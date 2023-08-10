@@ -1,0 +1,17 @@
+---
+- hosts: all
+  become: true
+  vars_files:
+          - var/users.yml
+          - secret.yml
+  tasks:
+          - name: Create users when uid start with 2
+            user:
+                    name: {{ item.username }}
+                    password: "{{ user_password | password_hash('sha512') }}"
+                    uid: "{{ item.uid }}"
+                    group: wheel
+                    shell: /bin/bash
+            loop: "{{ users }}"
+            when:
+                    - ( item.uid and inventory_hostname in groups['webservers']) 

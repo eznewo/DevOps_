@@ -19,3 +19,10 @@ ansible all -m authorized_key -a "user=elu state=present key='{{ lookup('file', 
 # Adding user to sudoers group
 
 ansible all -m copy -a "content='elu ALL=(ALL) NOPASSWD:ALL' dest='/etc/sudoers.d/elu' "
+
+
+# Creating vautl file 
+# ansible-vault encrypt --vault-id=users --vault-password=gaga regular_users.yml
+
+# ansible-vault encrypt --vault-password=wawa vars/database_user.yml 
+
