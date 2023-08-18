@@ -1,0 +1,16 @@
+---
+- hosts: mh1,mh4
+  become: true
+  tasks:
+          - name: Installing packages for nmcli module
+            package:
+                    name:
+                            - NetworkManager
+                            - glib 
+                            - libnm-qt-devel.x86_64
+                            - nm-connection-editor.x86_64 
+                            - libsemanage-python
+                            - policycoreutils-python
+                    state: present
+
+

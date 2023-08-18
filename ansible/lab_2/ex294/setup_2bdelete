@@ -1,0 +1,220 @@
+mh1 | SUCCESS => {
+    ansible_facts": {
+        "ansible_distribution": "CentOS",
+        "ansible_distribution_file_parsed": true,
+        "ansible_distribution_file_path": "/etc/redhat-release",
+        "ansible_distribution_file_variety": "RedHat",
+        "ansible_distribution_major_version": "8",
+        "ansible_distribution_release": "NA",
+        "ansible_distribution_version": "8",
+        "ansible_dns": {
+            "nameservers": [
+                "8.8.8.8",
+                "8.8.4.4"
+            ],
+            "search": [
+                "example.com"
+            ]
+        },
+        "ansible_domain": "example.com",
+        "ansible_effective_group_id": 2025,
+        "ansible_effective_user_id": 2025,
+        "ansible_enp0s3": {
+            "active": true,
+            "device": "enp0s3",
+            "ipv4": {
+                "address": "192.168.99.10",
+                "broadcast": "192.168.99.255",
+                "netmask": "255.255.255.0",
+                "network": "192.168.99.0"
+            },
+            "ipv6": [
+                {
+                    "address": "fe80::a00:27ff:feeb:2889",
+                    "prefix": "64",
+                    "scope": "link"
+                }
+            ],
+            "macaddress": "08:00:27:eb:28:89",
+            "module": "e1000",
+            "mtu": 1500,
+            "pciid": "0000:00:03.0",
+            "promisc": false,
+            "speed": 1000,
+            "timestamping": [],
+            "type": "ether"
+        },
+        "ansible_enp0s8": {
+            "active": true,
+            "device": "enp0s8",
+            "features": {
+        },
+        "ansible_fqdn": "mh1.example.com",
+        "ansible_hostname": "mh3",
+        "ansible_interfaces": [
+            "lo",
+            "enp0s8",
+            "enp0s3"
+        ],
+        "ansible_is_chroot": true,
+        "ansible_kernel": "4.18.0-500.el8.x86_64",
+        "ansible_local": {},
+        "ansible_lsb": {},
+        "ansible_machine": "x86_64",
+        "ansible_machine_id": "81c827cc5a2b4b0d93128b163025cdff",
+        "ansible_memfree_mb": 1212,
+        "ansible_memory_mb": {
+            "nocache": {
+                "free": 1469,
+                "used": 308
+            },
+            "real": {
+                "free": 1212,
+                "total": 1777,
+                "used": 565
+            },
+            "swap": {
+                "cached": 0,
+                "free": 2183,
+                "total": 2183,
+                "used": 0
+            }
+        },
+        "ansible_memtotal_mb": 1777,
+        "ansible_mounts": [
+            {
+                "block_available": 7318024,
+                "block_size": 4096,
+                "block_total": 10716045,
+                "block_used": 3398021,
+                "device": "/dev/mapper/cs-root",
+                "fstype": "xfs",
+                "inode_available": 21396870,
+                "inode_total": 21442560,
+                "inode_used": 45690,
+                "mount": "/",
+                "options": "rw,seclabel,relatime,attr2,inode64,logbufs=8,logbsize=32k,noquota",
+                "size_available": 29974626304,
+                "size_total": 43892920320,
+                "uuid": "2cbedbb1-6ad8-4405-a777-ad05d9d95bc2"
+            },
+            {
+                "block_available": 201759,
+                "block_size": 4096,
+                "block_total": 259584,
+                "block_used": 57825,
+                "device": "/dev/sda1",
+                "fstype": "xfs",
+                "inode_available": 523978,
+                "inode_total": 524288,
+                "inode_used": 310,
+                "mount": "/boot",
+                "options": "rw,seclabel,relatime,attr2,inode64,logbufs=8,logbsize=32k,noquota",
+                "size_available": 826404864,
+                "size_total": 1063256064,
+                "uuid": "6d894e81-d547-4daf-b0a6-8384d1d7c371"
+            },
+            {
+                "block_available": 80824,
+                "block_size": 1024,
+                "block_total": 87575,
+                "block_used": 6751,
+                "device": "/dev/sdb1",
+                "fstype": "ext4",
+                "inode_available": 24085,
+                "inode_total": 24096,
+                "inode_used": 11,
+                "mount": "/mnt",
+                "options": "rw,seclabel,relatime",
+                "size_available": 82763776,
+                "size_total": 89676800,
+                "uuid": "7f5bbc2e-4019-4228-ba3f-ff85ec77a58e"
+            },
+            {
+                "block_available": 5177874,
+                "block_size": 4096,
+                "block_total": 5231104,
+                "block_used": 53230,
+                "device": "/dev/mapper/cs-home",
+                "fstype": "xfs",
+                "inode_available": 10466943,
+                "inode_total": 10467328,
+                "inode_used": 385,
+                "mount": "/home",
+                "options": "rw,seclabel,relatime,attr2,inode64,logbufs=8,logbsize=32k,noquota",
+                "size_available": 21208571904,
+                "size_total": 21426601984,
+                "uuid": "529bf3b4-84f3-4292-af0b-a02ea72292de"
+            }
+        ],
+        "ansible_nodename": "mh1.example.com",
+        "ansible_os_family": "RedHat",
+        "ansible_pkg_mgr": "dnf",
+        "ansible_proc_cmdline": {
+            "BOOT_IMAGE": "(hd0,msdos1)/vmlinuz-4.18.0-500.el8.x86_64",
+            "crashkernel": "auto",
+            "quiet": true,
+            "rd.lvm.lv": [
+                "cs/root",
+                "cs/swap"
+            ],
+            "resume": "/dev/mapper/cs-swap",
+            "rhgb": true,
+            "ro": true,
+            "root": "/dev/mapper/cs-root"
+        },
+        "ansible_processor": [
+            "0",
+            "GenuineIntel",
+            "11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz",
+            "1",
+            "GenuineIntel",
+            "11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz"
+        ],
+        "ansible_processor_cores": 2,
+        "ansible_processor_count": 1,
+        "ansible_processor_threads_per_core": 1,
+        "ansible_processor_vcpus": 2,
+        "ansible_product_name": "VirtualBox",
+        "ansible_product_serial": "NA",
+        "ansible_product_uuid": "NA",
+        "ansible_product_version": "1.2",
+        "ansible_python_version": "3.6.8",
+        "ansible_real_group_id": 2025,
+        "ansible_real_user_id": 2025,
+        "ansible_selinux": {
+            "config_mode": "enforcing",
+            "mode": "enforcing",
+            "policyvers": 33,
+            "status": "enabled",
+            "type": "targeted"
+        },
+        "ansible_selinux_python_present": true,
+        "ansible_service_mgr": "systemd",
+        "ansible_swapfree_mb": 2183,
+        "ansible_swaptotal_mb": 2183,
+        "ansible_system": "Linux",
+        "ansible_system_capabilities": [
+            ""
+        ],
+        "ansible_system_capabilities_enforced": "True",
+        "ansible_system_vendor": "innotek GmbH",
+        "ansible_uptime_seconds": 3501,
+        "ansible_user_dir": "/home/elu",
+        "ansible_user_gecos": "",
+        "ansible_user_gid": 2025,
+        "ansible_user_id": "elu",
+        "ansible_user_shell": "/bin/bash",
+        "ansible_user_uid": 2025,
+        "ansible_userspace_architecture": "x86_64",
+        "ansible_userspace_bits": "64",
+        "ansible_virtualization_role": "guest",
+        "ansible_virtualization_type": "virtualbox",
+        "discovered_interpreter_python": "/usr/libexec/platform-python",
+        "gather_subset": [
+            "all"
+        ],
+        "module_setup": true
+    },
+    "changed": false
+}

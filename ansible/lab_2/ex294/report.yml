@@ -1,0 +1,52 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: true
+  tasks:
+          - name: print ansible facts
+            debug:
+                    var: ansible_facts
+
+          - name: print file 
+            copy:
+                    src: "report.txt"
+                    dest: "/root/report.txt"
+
+          - name: replace hostname 
+            lineinfile:
+                    path: /root/report.txt
+                    regexp: "^HOST"
+                    line: "HOST={{ ansible_facts['hostname'] }}"
+                    state: present
+
+          - name: replace Memory total
+            lineinfile:
+                    path: /root/report.txt
+                    regexp: "^MEMORY"
+                    line: "MEMORY={{ ansible_facts['memtotal_mb'] }}"
+                    state: present
+
+
+          - name: replace Bios Version
+            lineinfile:
+                    path: /root/report.txt
+                    regexp: "^BIOS"
+                    line: "HOST={{ ansible_facts['bios_version'] }}"
+                    state: present
+
+
+          - name: replace SDA Disk
+            lineinfile:
+                    path: /root/report.txt
+                    regexp: "^SDA_DISK"
+                    line: "SDA={{ ansible_devices['sda']['size'] | default('NONE') }}"
+                    state: present
+
+
+          - name: replace SDB Disk
+            lineinfile:
+                    path: /root/report.txt
+                    regexp: "^SDB_DISK"
+                    line: "SDB={{ ansible_devices['sdb']['size'] | default('NONE') }}"
+                    state: present
+

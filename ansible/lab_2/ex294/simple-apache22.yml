@@ -1,0 +1,55 @@
+---
+- hosts: webservers
+  become: true
+  tasks:
+          - name: Installing Packages
+            package:
+                    name: "{{ item }}"
+                    state: present
+
+            loop:
+                  - httpd
+                  - mod_ssl
+                  - php
+                  - firewalld
+          
+          - name: Enable and start service
+            service:
+                    name: "{{ item }}"
+                    state: started
+                    enabled: yes
+            loop:
+                    - httpd
+                    - firewalld
+
+          - name:  Allowing firewall for the http service
+            firewalld:
+                    port: "{{ item }}"
+                    state: enabled
+                    permanent: true
+                    immediate: true
+            loop:
+                    - 80/tcp
+                    - 443/tcp
+          - name: Prep index page
+            copy:
+                    content: "Welcome, you have connected to {{ ansible_facts.fqdn }}\n"
+                    dest: /var/www/html/index.html
+          - name: Index Content
+            template:
+                    src: index.html.j2
+                    dest: /var/www/html/index.html
+            notify: Restart Services
+  handlers:
+          - name: Restart Services
+            service:
+                    name: httpd
+                    state: restarted
+            
+          - name: Restart Services
+            service:
+                    name: firewalld
+                    state: reloaded
+
+
+

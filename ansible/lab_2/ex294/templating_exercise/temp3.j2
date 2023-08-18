@@ -1,0 +1,8 @@
+
+{%- for name in users %}
+  Your name is  {{ vars.users.name }} 
+    {% for age in users %}
+      and your age is  {{ vars.users.age }} 
+    {% endfor %}
+{%- endfor %}
+

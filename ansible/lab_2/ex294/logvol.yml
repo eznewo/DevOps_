@@ -1,0 +1,55 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+          - block:
+                  - name: Crate a logical volume 1500 MiB
+                    lvol:
+                            vg: vg0
+                            lv: data
+                            size: 1500
+                  - name: Create a ext4 file system
+                    filesystem:
+                            fstype: ext4
+                            dev: /dev/data/
+
+
+                     .... to be continued ...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          rescue:
+
+          - name: Create logical vol vg0
+            lvm:
+                    name: vg0
+                    size: 1500MiB
+
+
+            when: ansible_facts['memtoltal_mb'] >= "1500 MiB"
+
+
+
+            wheb: ansible_facts['memtotal_mb'] 
+
+
+
+            {% if ansible_facts['memtotal-mb'] >= '1500MiB' %}
+            
+            ls 
+            
+  
+          - name: 

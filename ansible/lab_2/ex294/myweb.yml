@@ -1,0 +1,74 @@
+---
+- hosts: webservers
+  become: yes
+  tasks:
+          - name: Create user myweb
+            user:
+                    name: myweb
+                    state: present
+
+          - name: Create myweb dir on webservers group
+            file:
+                    path: "/myweb"
+                    state: directory
+                    mode: '2775'
+                    owner: myweb
+
+          - name: Creat a symbolic link
+            file:
+                    src: "/myweb"
+                    dest: "/var/www/html/myweb"
+                    state: link
+                    force: yes
+
+          - name: creating the html file
+            copy:
+                    content: "Welcome to myWeb webpage"
+                    dest: /myweb/index.html
+
+          - name: Installing selinux policy
+            package:
+                    name: "{{ item }}"
+                    state: present
+            loop:
+                    - python3-policycoreutils
+                    - setools-console
+                    - httpd
+                    - firewalld
+
+          - name: Enable Services
+            service:
+                    name: httpd
+                    state: started
+                    enabled: yes
+
+          - name: Firewall configuration
+            firewalld:
+                    port: "{{ item }}"
+                    state: enabled
+                    permanent: yes
+                    immediate: yes
+            loop:
+                    - 80/tcp
+                    - 443/tcp
+            notify: Restart services
+
+          - name: Allow httpd from this directory
+            sefcontext:
+                    target: '/myweb(/.*)?'
+                    setype: httpd_sys_content_t
+                    state: present
+
+          - name: Restore the context 
+            command: "sudo restorecon -irv /myweb"
+
+  handlers:
+          - name: Restart services
+            service:
+                    name: "{{ item }}"
+                    state: restarted
+            loop:
+                    - httpd
+                    - firewalld
+
+

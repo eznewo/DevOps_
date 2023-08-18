@@ -1,0 +1,5 @@
+---
+- src: http://materials/haproxy.tar
+  name: balancer
+- src: http://materials/phpinfo.tar
+  name: phpinfo

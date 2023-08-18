@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: true
+  vars:
+    # Use "targeted" SELinux policy type
+    selinux_policy: targeted
+    # Set "enforcing" mode
+    selinux_state: enforcing
+  roles:
+          - role: rhel-system-roles.selinux 

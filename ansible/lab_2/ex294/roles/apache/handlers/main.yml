@@ -1,0 +1,7 @@
+---
+# handlers file for roles/apache
+          - name: Reload Firewalld
+            service:
+                    name: firewalld
+                    state: reloaded
+

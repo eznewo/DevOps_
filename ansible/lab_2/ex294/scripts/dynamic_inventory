@@ -1,0 +1,11 @@
+[proxy]
+mh1.example.com
+
+[webservers]
+mh2.example.com
+mh3.example.com
+
+[database]
+mh3.example.com
+mh4.example.com
+

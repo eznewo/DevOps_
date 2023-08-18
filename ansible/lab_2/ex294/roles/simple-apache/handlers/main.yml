@@ -1,0 +1,12 @@
+---
+# handlers file for roles/simple-apache
+          - name: Restart Services
+            service:
+                    name: httpd
+                    state: restarted
+            
+          - name: Restart Services
+            service:
+                    name: firewalld
+                    state: reloaded
+

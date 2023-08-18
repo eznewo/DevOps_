@@ -1,0 +1,32 @@
+---
+- hosts: all
+  become: true
+  vars:
+          group: networking
+  vars_prompt:
+          - name: username
+            prompt: what is your username ? 
+            private: false
+          - name: password
+            prompt: What is your password ?
+            private: true
+            confirm: true
+            salt_size: 2
+            encrypt: sha512_crypt
+
+  tasks:
+          - name: Creating group Networking
+            group:
+                    name: "{{ group }}"
+                    state: present
+          - name: Providing nmcli privilage for "{{ group }}"
+            copy:
+                    content: "%{{ group }} ALL = NOPASSWD: /usr/bin/nmcli\n"
+                    dest: /etc/sudoers.d/{{ group }}
+          - name: Creating account for new employees
+            user:
+                    name: "{{ username }}"
+                    password: "{{ password }}"
+                    group: "{{ group }}"
+
+

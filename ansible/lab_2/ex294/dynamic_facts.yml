@@ -1,0 +1,23 @@
+---
+- hosts: all
+  become: true
+  gather_facts: false
+  tasks:
+          - name: Creating directory for the facts
+            file:
+                    path: "{{ item }}"
+                    mode: 0755
+                    owner: root
+                    group: root
+                    state: directory
+            loop:
+                    - /etc/ansible/
+                    - /etc/ansible/facts.d
+          - name: Copy Dynamic Facts File
+            copy:
+                    src: files/dynamic_facts
+                    dest: /etc/ansible/facts.d/dynamic_facts
+                    mode: 0755
+                    owner: root
+                    group: root
+

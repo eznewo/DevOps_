@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  tasks:
+          - name: Simple Jinja2 Templating
+            template:
+                    src: temp1.j2
+                    dest: /home/elu/DevOps_/ansible/lab_2/ex294_ln/plays/templating_exercise/output1
+            vars:
+                    name: Naol
+                    
+
+

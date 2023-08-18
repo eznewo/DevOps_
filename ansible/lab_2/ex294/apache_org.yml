@@ -1,0 +1,46 @@
+---
+- hosts: webservers
+  become: true
+  tasks:
+          - name: Install httpd
+            yum:
+                    name: httpd
+                    state: present
+
+          - name: Start and enabled the httpd service
+            service:
+                    name: httpd
+                    state: started
+                    enabled: yes
+
+          - name: Install  Firewalld
+            yum:
+                    name: firewalld
+                    state: present
+          - name:
+            service:
+                    name: firewalld
+                    state: started
+                    enabled: yes
+
+          - name: Deploying an Index page on webservers
+            copy:
+                    content: "Welcome, you have connected to {{ ansible_facts['fqdn'] }}"
+                    dest: /var/www/html/index.html
+
+          - name: Allowing Port 80 and 443
+            firewalld:
+                    port: "{{ item }}" 
+                    permanent: yes
+                    immediate: yes
+                    state: enabled
+            loop:
+                    - 80/tcp
+                    - 443/tcp
+
+            notify: Reload Firewalld
+  handlers:
+          - name: Reload Firewalld
+            service:
+                    name: firewalld
+                    state: reloaded

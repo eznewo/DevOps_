@@ -1,0 +1,6 @@
+---
+- hosts: mh1,mh4
+  become: true
+  roles:
+          - name: rhel-system-roles.network
+

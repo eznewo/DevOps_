@@ -1,0 +1,21 @@
+---
+- hosts: proxy
+  become: true
+  tasks:
+          - name: Schedule vmstat excution
+            at:
+                    command: " /usr/bin/vmstat 1>/var/log/vmstat.log; chown elu:elu /var/log/vmstat.log"
+                    count: 1
+                    units: minutes
+                    unique: true
+
+          - name: Schedule period cron job
+            cron:
+                    name: Collecting vmstate hourly on weekdays
+                    weekday: "1-5"
+                    minute: "0"
+                    hour: "*"
+                    user: root
+                    job: 'echo ----- $(date "+%m/%d/%y %H:%M") >> /var/log/devices.log; lsblk >> /var/log/devices.log; chown root:root /var/log/devices.log' 
+
+...

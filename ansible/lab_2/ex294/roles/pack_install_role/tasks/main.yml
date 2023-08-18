@@ -1,0 +1,25 @@
+---
+# tasks file for roles/pack_install_role
+- name: Installing httpd 
+  yum:
+          name: httpd
+          state: present
+- name: Starte on boot
+  service:
+          name: httpd
+          state: started
+          enabled: yes
+- name: Creating index.html file
+  template:
+          src: index.html.j2
+          dest: /var/www/html/index.html
+- name: Configure firewalld for web traffic
+  firewalld:
+          port: "{{ item }}"
+          state: enabled
+          immediate: yes
+          permanent: yes
+  loop:
+          - 80/tcp
+          - 443/tcp
+  notify: Reload services

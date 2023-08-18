@@ -1,0 +1,8 @@
+127.0.0.1 localhost {{ ansible_hostname }} {{ ansible_fqdn }}
+127.0.0.1 localhost
+
+{% for host in groups['all'] %}
+{{ hostvars[host].ansible_default_ipv4.address }} {{ hostvars[host].anisble_nodename }} {{ hostvars[host].ansible_hostname }} 
+{% endfor %}
+
+

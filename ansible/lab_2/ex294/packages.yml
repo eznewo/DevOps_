@@ -1,0 +1,24 @@
+---
+- hosts: all
+  become: yes
+  vars:
+
+  tasks:
+          - name: Install on Proxy
+            yum:
+                    name: "{{ item }}"
+                    state: present
+            when: ansible_hostname in groups['proxy']
+            loop:
+                    - tcpdump
+                    - mailx
+          - name: Installing on database servers
+            yum:
+                    name: "{{ item }}"
+                    state: present
+            when: ansible_hostname in groups['database']
+            loop:
+                      - lsof
+                      - mailx
+
+

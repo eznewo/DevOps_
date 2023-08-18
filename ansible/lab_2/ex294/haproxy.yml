@@ -1,0 +1,32 @@
+---
+- hosts: proxy
+  become: yes
+  vars:
+          haproxy_backend_balance_method: "roundrobin"
+          haproxy_backend_mode: "http"
+          haproxy_backend_services:
+                  - name: app1
+                    address: mh2.example.com
+                  - name: app2
+                    address: mh3example.com
+
+  tasks:
+          - name: firewall rule
+            firewalld:
+                    port: 80/tcp
+                    state: enabled
+                    immediate: yes
+                    permanent: true
+            notify: Reload Firewalld
+  handlers:
+          - name: Reload Firewalld
+            service:
+                    name: firewalld
+                    state: reloaded
+
+                     
+
+
+
+
+  

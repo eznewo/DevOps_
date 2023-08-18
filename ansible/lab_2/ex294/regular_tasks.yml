@@ -1,0 +1,19 @@
+---
+- hosts: all
+  become: true
+  tasks:
+          - name: Create a file for the cron job
+            file:
+                    name: /var/log/time.log
+                    state: touch
+                    mode: 0766
+            when: inventory_hostname in groups['proxy']
+          - name: Cron job 
+            cron:
+                    name: Appendig date and time every hr
+                    weekday: "*"
+                    minute: "0"
+                    hour: "*"
+                    user: root
+                    job: " echo $(date) >> /var/log/time.log"
+            when: inventory_hostname in groups['proxy']

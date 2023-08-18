@@ -1,0 +1,22 @@
+# Tasks 1:
+  # Installing Ansible
+
+	yum install ansible -y
+
+	yum install epel-release
+	yum install ansible -y
+  # Creating user:
+  	useradd elu
+	echo ----- | passwd stdin elu
+
+  # Creatng dir and cfg file:
+  	mkdir /home/elu/DevOps_/ansible/lab_2/ex294_ln/plays
+	touch /home/elu/DevOps_/ansible/lab_2/ex294_ln/plays/ansible.cfg
+  
+  # Creating an inventory file:
+	touch /home/elu/DevOps_/ansible/lab_2/ex294_ln/plays/inventory
+
+
+  # Genrate ssh key
+	$ ssh-keygen -t rsa
+

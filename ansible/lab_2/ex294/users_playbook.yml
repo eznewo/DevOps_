@@ -1,0 +1,40 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: false
+  vars_files:
+          - users_list.yml
+          - secr.yml
+  tasks:
+          - name: Creating group {{ item }}
+            group:
+                    name: "{{ item }}"
+                    state: present
+            loop:
+                    - sysadmin
+                    - webdev
+                    - dbdev
+          - name: Create users sysadmin
+            user:
+                    name: "{{ item.username }}"
+                    state: present
+                    group: "{{ item.job }}"
+                    password: "{{ temp_passwd | password_hash('sha512') }}"
+            loop: "{{ users }}"
+
+          - name: Create users webdev 
+            user:
+                    name: "{{ item.username }}"
+                    state: present
+                    group: "{{ item.job }}"
+                    password: "{{ temp_passwd | password_hash('sha512') }}"
+            loop: "{{ users }}"
+            when: (inventory_hostname in groups['webservers']) and item.job  == "webdev" 
+          - name: Create users dbdev
+            user:
+                    name: "{{ item.username }}"
+                    state: present
+                    group: "{{ item.job }}"
+                    password: "{{ temp_passwd | password_hash('sha512') }}"
+            loop: "{{ users }}"
+            when: (inventory_hostname in groups['database']) and  item.job == "dbdev" 

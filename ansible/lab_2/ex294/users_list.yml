@@ -1,0 +1,8 @@
+---
+users:
+        - username: teddy
+          job: sysadmin
+        - username: bini
+          job: webdev
+        - username: yoni
+          job: dbdev

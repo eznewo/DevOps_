@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: true
+  tasks:
+          - name: Info about installed packages in remote node
+            package_facts:
+                    name: Print the rpm package facts
+            debug:
+                    msg:
+                            var: ansible_facts.packages
+ 
